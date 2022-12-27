@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: pink;
+        margin: 0px;
+        }
+
+        .container{
+box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.4);
+border-radius: 20PX;
+height: 300px;
+width: 30rem;
+background: #fff;
+display: grid;
+place-items: center;
+max-width: 100%;
+
+        }
+
+        .btn{
+            background-color: yellow;
+            border-radius: 20px;
+            border: none;
+            padding: 10px;
+            box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);
+        cursor: pointer;
+        }
+
+</style>
+<body>
+    <div class="container">
+            <h4>Some Funny Dad Jokes</h3>
+                <div class="main" id="main">
+            <h3 id="joke">Loading Jokes................</h3>
+        </div>
+<button id="btn" class="btn">Click here</button>    
+ </div>
+
+
+ <script>
+    let joke = document.getElementById('joke');
+    let btn = document.getElementById('btn');
+
+  generate();
+
+  btn.addEventListener('click',generate);
+  function generate(){
+    const options = {
+	method: 'GET',
+	headers: {
+		accept: 'application/json',
+		'X-RapidAPI-Key': 'cd367222a6msh9377acbf1e69dc3p10433djsn9f76fd146fb5',
+		'X-RapidAPI-Host': 'matchilling-chuck-norris-jokes-v1.p.rapidapi.com'
+	}
+};
+
+fetch('https://matchilling-chuck-norris-jokes-v1.p.rapidapi.com/jokes/random', options)
+	.then(response => response.json())
+	.then(response => joke.innerHTML=response.value)
+	.catch(err => console.error(err));
+}
+ </script>
+</body>
+</html>
